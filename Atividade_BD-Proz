@@ -1,0 +1,32 @@
+CREATE DATABASE atividadeI;
+
+USE atividadeI;
+
+create table personagens(
+id INT primary key,
+nome VARCHAR (50) Not NULL, 
+universo VARCHAR (50) NOT NULL);
+
+INSERT INTO personagens(id,nome, universo) VALUES
+(1,'Batman','DC'),
+(2,'Super Homem','DC'),
+(3,'Mulher Maravilha','DC');
+
+CREATE TABLE atributos(
+ id INT primary key,
+ personagem_id INT not NULL,
+inteligencia INT NOT NULL,
+forca INT NOT NULL,
+agilidade INT NOT NULL,
+velocidade INT NOT NULL,
+resistencia INT NOT NULL,
+FOREIGN KEY (personagem_id)REFERENCES personagens(id));
+
+INSERT into atributos (ID,personagem_id,inteligencia,forca,agilidade, velocidade, resistencia) VALUES
+(1,1,10,7,9,7,8),
+(2,2,9,10,7,10,10),
+(3,3,8,9,8,9,9);
+
+select personagens.nome, atributos.inteligencia,atributos.forca,atributos.agilidade,atributos.velocidade,atributos.resistencia
+FROM personagens
+INNER JOIN atributos ON personagens.ID= atributos.personagem_id;
